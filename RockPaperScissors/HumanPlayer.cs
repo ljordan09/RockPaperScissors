@@ -33,8 +33,8 @@ namespace RockPaperScissors
                 }
                 else
                 {
-                    Console.Write("I'm sorry, that was not a valid input. Please try again. Rock, Paper, or Scissors? (R / P / S)\n");
-                    input2 = Console.ReadLine();
+                    Console.Write("I'm sorry, that was not a valid input. Please try again. (R / P / S)\n");
+                    
                     return GenerateRoshambo();
                    
                 }

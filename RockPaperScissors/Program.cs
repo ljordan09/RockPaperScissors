@@ -29,7 +29,9 @@ namespace RockPaperScissors
                 string result = GetWinner(userPick, oppPick);
 
                 Console.WriteLine($"{user._Name}: {userPick}\n{opponent._Name}: {oppPick}\n{result}");
-                
+
+                Console.WriteLine("Would you like to keep playing? (Y/N):");
+                repeat = Validator.DoAgain();
             }
            
 
@@ -37,26 +39,38 @@ namespace RockPaperScissors
 
         public static Player SelectOpponent()
         {
-            Console.WriteLine("\nWould you like to play against RoRo or Randy? (1 or 2)?");
             int opponentNum;
-            bool success = int.TryParse(Console.ReadLine().ToUpper(), out opponentNum);
-            while (!success || opponentNum < 1 || opponentNum > 2)
+            while (true)
             {
-                Console.Write("Not a valid selection. Please try again: ");
-                int.TryParse(Console.ReadLine(), out opponentNum);
-                break;
+                Console.WriteLine("\nWould you like to play against RoRo or Randy? (1 or 2)?");
+                
+                bool success = int.TryParse(Console.ReadLine().ToUpper(), out opponentNum);
+                if(!success)
+                {
+                    Console.WriteLine("Please enter 1 or 2");
+                }
+                else if(opponentNum > 2|| opponentNum < 1)
+                {
+                    Console.WriteLine("1 or 2");
+                }
+
+                else
+                {
+                    break;
+
+                }
+
+                
 
             }
-
-
             if (opponentNum == 1)
             {
-                Player opponent = new RandPlayer("Randy");
+                Player opponent = new RockPlayer("RoRo");
                 return opponent;
             }
             else
             {
-                Player opponent2 = new RockPlayer("RoRO");
+                Player opponent2 = new RandPlayer("Randy");
                 return opponent2;
             }
         }
